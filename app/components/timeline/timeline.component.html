@@ -1,0 +1,14 @@
+<GridLayout #mainContainer columns="auto,*" rows="*" (loaded)="onLoaded($event)">
+    <GridLayout #timelineButtons class="timeline-buttons" paddingLeft="20" paddingRight="20" rows="*,*,*,*" (loaded)="onChildLoaded($event)">
+        <StackLayout *ngFor="let timelineButton of timelineButtonsArr; let i = index;" [row]="i">
+            <Label *ngIf="timelineButton.iconTop" text="{{ timelineButton.iconTop  }}" class="fa" horizontalAlignment="center"></Label>
+            <Button class="button" [text]="timelineButton.text" verticalAlignment="center" horizontalAlignment="center" (tap)="onTap()"
+                [nsRouterLink]="[timelineButton.route]"></Button>
+            <Label *ngIf="timelineButton.text_secondary" [text]="timelineButton.text_secondary"></Label>
+            <Label *ngIf="timelineButton.iconBottom" text="{{ timelineButton.iconBottom  }}" class="fa" horizontalAlignment="center"></Label>
+        </StackLayout>
+    </GridLayout>
+    <StackLayout #timelineContent col=1 class="timeline-content">
+        <router-outlet></router-outlet>
+    </StackLayout>
+</GridLayout>
