@@ -1,0 +1,24 @@
+<ActionBar title="Your Treament Schedule">
+</ActionBar>
+
+<StackLayout modal-dialog-host horizontalAlignment="center" verticalAlignment="top">
+
+    <ListView #notificationsList [items]="treatmentSchedules">
+        <template let-item="item" let-i="index" let-odd="odd" let-even="even">
+            <StackLayout [class.odd]="odd" [class.even]="even" orientation="vertical">
+                <Label [text]='"Treatment " + (i+1)'></Label>
+                <Label [text]='"DateTime " + item.dateTime'></Label>
+                <Label [text]='"Id  "+ item.id'></Label>
+                <StackLayout #stack orientation="horizontal">
+                    <Button text="Delete" (tap)="delete(item.id)" width="100"></Button>
+                    <Switch #notificationSwitch [checked]="item.enableNotifications" (tap)="notificationStatusChanged(item.id,notificationSwitch)"
+                        width="100"></Switch>
+                </StackLayout>
+            </StackLayout>
+        </template>
+    </ListView>
+    <!--<Button class="add-notification-button " text="+" (tap)="addNotification()"></Button>-->
+</StackLayout>
+<Fab icon="~/images/ic_add_white.png" RippleColor="#f1f1f1" class="fab-button fa" verticalAlignment="bottom" horizontalAlignment="right"
+    (tap)="addNotification()">
+</Fab>
